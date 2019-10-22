@@ -21,7 +21,7 @@ from sklearn.decomposition import PCA # type: ignore
 SUBTITLE = os.getenv('SUBTITLE') # 'testing visual properties of hate symbols with magical algorithms'
 STATIC='static'
 BASILICA_KEY = os.getenv('BASILICA_KEY')# '503aaf17-3cc1-b7a3-d8b9-e9d080f207e5' # should be env var
-PORT = int(os.environ.get('PORT', 5000))
+PORT = int(os.environ.get('PORT', 33507))
 #
 def create_app():
     ''' create and configure an instance of the Flask application '''
@@ -133,4 +133,4 @@ def log_to_stderr(app):
 if __name__=='__main__':
     app = create_app()
     log_to_stderr(app)
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=PORT)
