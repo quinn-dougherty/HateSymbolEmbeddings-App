@@ -10,7 +10,7 @@ import logging
 
 from flask import Flask, render_template, request
 import basilica # type: ignore
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from numpy import array, arccos, pi, dot # type: ignore
 from numpy.linalg import norm # type: ignore
 from pandas import DataFrame # type: ignore
@@ -117,5 +117,6 @@ def create_app():
     
     return app
 
-#if __name__=='__main__':
-#    app.run(debug=True, host='0.0.0.0', port=PORT)
+if __name__=='__main__':
+    app = create_app()
+    app.run(debug=True, host='0.0.0.0', port=PORT)
