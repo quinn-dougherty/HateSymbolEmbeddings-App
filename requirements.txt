@@ -6,3 +6,4 @@ prefect
 flask-sqlalchemy
 basilica
 python-dotenv
+gunicorn

@@ -7,5 +7,6 @@ COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
 RUN mkdir tmp
-CMD ["flask", "run"]
+#CMD ["flask", "run"]
 #CMD ["python", "hatesymbolembeddings/app.py"]
+CMD ["gunicorn", "hatesymbolembeddings:APP", "-b", "0.0.0.0:33507"]

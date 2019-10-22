@@ -17,10 +17,11 @@ from pandas import DataFrame # type: ignore
 from scipy.spatial import distance # type: ignore
 from sklearn.decomposition import PCA # type: ignore
 
+from .settings import SUBTITLE, BASILICA_KEY
 
-SUBTITLE = os.getenv('SUBTITLE') # 'testing visual properties of hate symbols with magical algorithms'
+# SUBTITLE = os.getenv('SUBTITLE') # 'testing visual properties of hate symbols with magical algorithms'
 STATIC='static'
-BASILICA_KEY = os.getenv('BASILICA_KEY')# '503aaf17-3cc1-b7a3-d8b9-e9d080f207e5' # should be env var
+#BASILICA_KEY = os.getenv('BASILICA_KEY')
 PORT = int(os.environ.get('PORT', 33507))
 #
 def create_app():
