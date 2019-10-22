@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 RUN mkdir tmp
 CMD ["flask", "run"]
-#CMD ["python", "app.py"]
+#CMD ["python", "hatesymbolembeddings/app.py"]
