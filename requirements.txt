@@ -1,0 +1,8 @@
+flask
+numpy
+pandas
+scikit-learn
+prefect
+flask-sqlalchemy
+basilica
+python-dotenv

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Hate Symbol Embeddings - {{ title }}</title>
+		<!-- CSS, keywords, metadat goes here -->
+		<link rel="stylesheet" href="https://unpkg.com/picnic">
+	</head>
+
+
+	<body>
+		<h1>Hate Symbol Embeddings - {{ title }}</h1>
+
+		{% block content %}
+        <p><h3>cluster similarity</h3>
+          cluster over embeddings then target labels with a classifier.
+          </p>
+        <form action = "/clustersimilarity" method = "POST" enctype = "multipart/form-data">
+            <input type = "file" name = "img" />
+            <input type = "submit" value = "Predict cluster membership with logistic regression" />
+        </form>
+        <p><h3>cosine similarity: </h3></p>
+        <form action = "/cosinesimilarity" method = "POST" enctype = "multipart/form-data">
+            <input type = "file" name = "img" />
+            <input type = "submit" value = "Show 'nearby' symbols with cosine distance" />
+        </form>
+<!--
+        <form action="/clustersimilarity" method="post">
+            <input type="text" name="url" placeholder="url direct to a jpg">
+            <input type="submit" value="Send JPG">
+        </form>
+-->
+        <option value="{{ x }}">{{ x }}</option>
+
+        {% endblock %}
+	</body>
+</html>
