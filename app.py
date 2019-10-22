@@ -117,6 +117,20 @@ def create_app():
     
     return app
 
+import logging
+import sys
+from logging import Formatter
+
+def log_to_stderr(app):
+  handler = logging.StreamHandler(sys.stderr)
+  handler.setFormatter(Formatter(
+    '%(asctime)s %(levelname)s: %(message)s '
+    '[in %(pathname)s:%(lineno)d]'
+  ))
+  handler.setLevel(logging.WARNING)
+  app.logger.addHandler(handler)
+
 if __name__=='__main__':
     app = create_app()
-    app.run(debug=True, host='0.0.0.0', port=PORT)
+    log_to_stderr(app)
+    app.run(debug=True, host='0.0.0.0', port=5000)
