@@ -130,7 +130,7 @@ def log_to_stderr(app):
   handler.setLevel(logging.WARNING)
   app.logger.addHandler(handler)
 
-if __name__=='__main__':
-    app = create_app()
-    log_to_stderr(app)
-    app.run(debug=True, host='0.0.0.0', port=PORT)
+#if __name__=='__main__':
+#    app = create_app()
+#    log_to_stderr(app)
+#    app.run(debug=True, host='0.0.0.0', port=PORT)
