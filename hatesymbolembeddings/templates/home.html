@@ -17,6 +17,16 @@
 	<h1>{{ title }} - {{ subtitle }}</h1>
 
 	{% block content %}
+
+        <p><h3>nearest neighbors: </h3>
+	take the <a href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm">20 nearest neighbors</a>
+
+	</p>
+        <form action = "/knn" method = "POST" enctype = "multipart/form-data">
+            <input type = "file" name = "img" />
+            <input type = "submit" value = "Show the nearest neighbors with KNN" />
+        </form>
+
         <p><h3>cosine similarity: </h3>
 	take the <a href="https://en.wikipedia.org/wiki/Cosine_similarity">cosine similarity</a> 
 	(dot product divided by product of magnitudes) of your submitted photo with each embedding, 
@@ -24,7 +34,7 @@
 	</p>
         <form action = "/cosinesimilarity" method = "POST" enctype = "multipart/form-data">
             <input type = "file" name = "img" />
-            <input type = "submit" value = "Show 'nearby' symbols with cosine distance" />
+            <input type = "submit" value = "Show 'nearby' symbols with cosine similarity" />
         </form>
 
 

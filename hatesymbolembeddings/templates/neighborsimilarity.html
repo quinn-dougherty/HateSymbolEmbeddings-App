@@ -1,0 +1,20 @@
+{% extends "home.html" %}
+{% block content %}
+
+<h2>magical algorithm: nearest neighbors</h2>
+
+
+<h3> your submitted image: </h3>
+<img src="{{ url_for('static', filename=filepath) }}", alt="{{ filepath }}">
+
+<h3> similar images by k nearest neighbors (k=20): </h3>
+{% for jpg in similar_jpgs %}
+<img src="{{ url_for('static', filename=jpg) }}", alt="{{ jpg }}">
+{% endfor %}
+
+
+<p></p>
+<a href="/howwhy">How it works, how to use it, how not to use it. </a>
+
+{% endblock %}
+

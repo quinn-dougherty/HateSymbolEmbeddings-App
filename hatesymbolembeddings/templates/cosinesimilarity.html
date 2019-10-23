@@ -11,6 +11,9 @@
 {% for jpg in similar_jpgs %}
 <img src="{{ url_for('static', filename=jpg) }}", alt="{{ jpg }}">
 {% endfor %}
-{% endblock %}
+
+
 <p></p>
 <a href="/howwhy">How it works, how to use it, how not to use it. </a>
+
+{% endblock %}

@@ -33,7 +33,7 @@ def get_upload_save_it_and_return_embedding() -> Tuple[array, str]:
     f.save(uploaded_image)
 
     with basilica.Connection(BASILICA_KEY) as c:
-        embedding_ = c.embed_image_file(uploaded_image)
+        embedding_ = c.embed_image_file(uploaded_image, opts={'dimensions': 2048})
 
     return embedding_, uploaded_image
 
@@ -60,7 +60,7 @@ def create_app():
         
         embedding_, uploaded_image = get_upload_save_it_and_return_embedding()
 
-        with open(f'{STATIC}/model.pickle', 'rb') as model_pickle:
+        with open(f'{STATIC}/classifier.pickle', 'rb') as model_pickle:
             model = pickle.load(model_pickle)
 
         with open(f'{STATIC}/dataframe.pickle', 'rb') as df_pickle:
@@ -118,6 +118,31 @@ def create_app():
     
     @app.route('/knn', methods=['POST'])
     def knn() -> str: 
+
+        embedding_, uploaded_image = get_upload_save_it_and_return_embedding()
+
+        with open(f'{STATIC}/neighbors.pickle', 'rb') as model_pickle:
+            neighbors = pickle.load(model_pickle)
+
+        with open(f'{STATIC}/dataframe.pickle', 'rb') as df_pickle:
+            df = pickle.load(df_pickle)
+
+        embedding = array([embedding_])
+        distances, indices = neighbors.kneighbors(embedding)
+
+        similars = df.iloc[indices[0]]
+       
+        similar_jpgs = [f'jpgs/hate-symbols-db-{idx:04d}.jpg' for idx in similars.index]
+
+        return render_template(
+            'neighborsimilarity.html',
+            title=TITLE,
+            subtitle=SUBTITLE,
+            filepath = uploaded_image,
+            similar_jpgs = similar_jpgs
+        )
+
+
         pass
 
     @app.route('/howwhy')
@@ -126,20 +151,3 @@ def create_app():
 
     return app
 
-import logging
-import sys
-from logging import Formatter
-
-def log_to_stderr(app):
-  handler = logging.StreamHandler(sys.stderr)
-  handler.setFormatter(Formatter(
-    '%(asctime)s %(levelname)s: %(message)s '
-    '[in %(pathname)s:%(lineno)d]'
-  ))
-  handler.setLevel(logging.WARNING)
-  app.logger.addHandler(handler)
-
-#if __name__=='__main__':
-#    app = create_app()
-#    log_to_stderr(app)
-#    app.run(debug=True, host='0.0.0.0', port=PORT)
