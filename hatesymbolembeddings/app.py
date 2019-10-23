@@ -17,12 +17,12 @@ from pandas import DataFrame # type: ignore
 from scipy.spatial import distance # type: ignore
 from sklearn.decomposition import PCA # type: ignore
 
-from .settings import SUBTITLE, BASILICA_KEY
+from .settings import SUBTITLE, BASILICA_KEY, PORT
 
 # SUBTITLE = os.getenv('SUBTITLE') # 'testing visual properties of hate symbols with magical algorithms'
 STATIC='static'
 #BASILICA_KEY = os.getenv('BASILICA_KEY')
-PORT = int(os.environ.get('PORT', 33507))
+# PORT = int(os.environ.get('PORT', 33507))
 #
 def create_app():
     ''' create and configure an instance of the Flask application '''
@@ -36,9 +36,7 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['ENV'] = 'debug' # TODO: Change beffore deploying
     app.config['UPLOAD_FOLDER'] = 'tmp'
-    # create the folders when setting up your app
-    # thanks https://stackoverflow.com/a/42425388/10993971
-    os.makedirs(os.path.join(app.instance_path, app.config['UPLOAD_FOLDER']), exist_ok=True)
+    os.makedirs(os.path.join(STATIC, app.config['UPLOAD_FOLDER']), exist_ok=True)
 
     @app.route('/')
     def home():

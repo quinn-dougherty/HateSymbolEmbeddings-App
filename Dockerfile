@@ -6,7 +6,8 @@ RUN apt-get update -qqy && apt-get install -qqy libopenblas-dev gfortran
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
 
-EXPOSE 33507
+EXPOSE $PORT
+
 COPY . . 
 
 # RUN mkdir tmp
