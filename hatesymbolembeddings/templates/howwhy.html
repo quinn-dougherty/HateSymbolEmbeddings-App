@@ -1,0 +1,17 @@
+
+{% extends "home.html" %}
+
+{% block content %}
+
+<h2>Embeddings</h2>
+<p>An embedding is any mapping that turns something into numbers, specifically a high-dimensional vector. That's it. On this occasion, we use a form of unsupervised learning called <b>deep feature extraction</b> which over images means we're carving a layer of neurons out of a CNN (convolutional neural network). The service is called <a href="basilica.ai">Basilica</a>, a simple API for deep feature extraction. Read more on their own blog, <a href="https://www.basilica.ai/blog/the-unreasonable-effectiveness-of-deep-feature-extraction/">here</a>.  </p>
+
+<p>In the present application, we sent the <a href="https://www.adl.org/hate-symbols">ADL's hate symbols database</a> over to Basilica so we could do machine learning over the extracted features. When you upload a photo, it is also sent to Basilica. </p>
+
+<h2>How not to use this app</h2>
+<p>At the current data size, this app is more of a prototype than a tool to be used. Please don't take its results out of context, and draw conclusions from a wide net of research techniques instead of from one tool. Do not use this app to declare that arbitrary symbols are hateful. Remember to consult your nearest disinformation and extremism expert. </p>
+
+<h2>How to use this app</h2> 
+<p>It is our hope that extremism researchers can use this app to better understand patterns in symbolism. </p>
+
+{% endblock %}
