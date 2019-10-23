@@ -12,4 +12,5 @@ COPY . .
 # RUN mkdir tmp
 #CMD ["flask", "run"]
 #CMD ["python", "hatesymbolembeddings/app.py"]
-CMD ["gunicorn", "hatesymbolembeddings:APP", "-b", "0.0.0.0:33507"]
+# CMD ["gunicorn", "hatesymbolembeddings:APP", "-b", "0.0.0.0:33507"]
+CMD gunicorn hatesymbolembeddings:APP --bind 0.0.0.0:$PORT wsgi
