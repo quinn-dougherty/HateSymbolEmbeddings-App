@@ -21,7 +21,7 @@ from sklearn.decomposition import PCA # type: ignore
 from .settings import TITLE, SUBTITLE, BASILICA_KEY, PORT
 
 # SUBTITLE = os.getenv('SUBTITLE') # 'testing visual properties of hate symbols with magical algorithms'
-STATIC='static'
+STATIC='hatesymbolembeddings/static'
 #BASILICA_KEY = os.getenv('BASILICA_KEY')
 # PORT = int(os.environ.get('PORT', 33507))
 #
@@ -45,7 +45,11 @@ def create_app():
         static_url_path=f'/{STATIC}',
         # instance_path=Path(f'{STATIC}').resolve()
     )
-   
+    app.add_url_rule(
+        app.static_url_path + '/<path:filename>',
+        endpoint=STATIC, view_func=app.send_static_file
+    )
+
     # app.config['ENV'] = 'debug' # TODO: Change beffore deploying
     app.config['UPLOAD_FOLDER'] = TMP
     os.makedirs(os.path.join(STATIC, app.config['UPLOAD_FOLDER']), exist_ok=True)
